@@ -20,6 +20,7 @@ FOUNDATION_EXPORT const unsigned char CSStickyHeaderFlowLayoutVersionString[];
 #pragma mark -
 
 extern NSString *const CSStickyHeaderParallaxHeader;
+extern NSString *const CSSeparator;
 
 @interface CSStickyHeaderFlowLayout : UICollectionViewFlowLayout
 

@@ -21,18 +21,32 @@ class CollectionViewController: UICollectionViewController {
 
         self.collectionView?.alwaysBounceVertical = true
         self.view.backgroundColor = UIColor.whiteColor()
-
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(collectionViewLayout: layout)
+        
+        
         // Setup Cell
         self.collectionView?.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.layout?.itemSize = CGSizeMake(self.view.frame.size.width, 44)
-
+        
         // Setup Header
         self.collectionView?.registerClass(CollectionParallaxHeader.self, forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader, withReuseIdentifier: "parallaxHeader")
         self.layout?.parallaxHeaderReferenceSize = CGSizeMake(self.view.frame.size.width, 100)
-
+        
         // Setup Section Header
         self.collectionView?.registerClass(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader")
         self.layout?.headerReferenceSize = CGSizeMake(320, 40)
+        
+        self.layout?.registerClass(CollectionViewSeparator.self, forDecorationViewOfKind: CSSeparator)
+        
+        //self.collectionView?.registerClass(CollectionViewSeparator.self, forSupplementaryViewOfKind: CSSeparator, withReuseIdentifier: "cellSeparator")
+        self.layout?.minimumLineSpacing = 2
     }
 
     // Cells
@@ -58,6 +72,9 @@ class CollectionViewController: UICollectionViewController {
         } else if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "sectionHeader", forIndexPath: indexPath)
             view.backgroundColor = UIColor.lightGrayColor()
+            return view
+        } else if kind == CSSeparator{
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "cellSeparator", forIndexPath: indexPath)
             return view
         }
 

@@ -1,5 +1,5 @@
 //
-//  CollectionViewSectionHeader.swift
+//  CollectionViewSeparator.swift
 //  SwiftDemo
 //
 //  Created by James Tang on 23/7/15.
@@ -8,9 +8,8 @@
 
 import UIKit
 
-class CollectionViewSectionHeader: UICollectionReusableView {
+class CollectionViewSeparator: UICollectionReusableView {
 
-    let label = UILabel()
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -22,8 +21,11 @@ class CollectionViewSectionHeader: UICollectionReusableView {
     }
 
     func commonInit() {
-        self.addSubview(label)
-        label.frame = self.bounds
-        label.text = UICollectionElementKindSectionHeader
+        self.backgroundColor = UIColor.greenColor()
+    }
+    
+    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.applyLayoutAttributes(layoutAttributes)
+        self.frame = layoutAttributes.frame
     }
 }

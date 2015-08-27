@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094F9A551B8F2C5300AA411B /* CollectionViewSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F9A541B8F2C5300AA411B /* CollectionViewSeparator.swift */; };
 		1A3BEB111B56C602009644C9 /* CSStickyHeaderFlowLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3BEB101B56C602009644C9 /* CSStickyHeaderFlowLayout.framework */; };
 		1A3BEB171B56C8E2009644C9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BEB161B56C8E2009644C9 /* CollectionViewCell.swift */; };
 		1A3BEB191B56CBE9009644C9 /* CollectionParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BEB181B56CBE9009644C9 /* CollectionParallaxHeader.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		094F9A541B8F2C5300AA411B /* CollectionViewSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSeparator.swift; sourceTree = "<group>"; };
 		1A3BEB101B56C602009644C9 /* CSStickyHeaderFlowLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSStickyHeaderFlowLayout.framework; path = "../build/Debug-iphoneos/CSStickyHeaderFlowLayout.framework"; sourceTree = "<group>"; };
 		1A3BEB131B56C65F009644C9 /* SwiftDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		1A3BEB161B56C8E2009644C9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				1A3BEB161B56C8E2009644C9 /* CollectionViewCell.swift */,
 				1A3BEB181B56CBE9009644C9 /* CollectionParallaxHeader.swift */,
 				1A4229D91B608D74009C66CD /* CollectionViewSectionHeader.swift */,
+				094F9A541B8F2C5300AA411B /* CollectionViewSeparator.swift */,
 				1A4B2F371B56C513007F67CC /* Images.xcassets */,
 				1A4B2F391B56C513007F67CC /* LaunchScreen.xib */,
 				1A4B2F2E1B56C513007F67CC /* Supporting Files */,
@@ -226,6 +229,7 @@
 			files = (
 				1A4229DA1B608D74009C66CD /* CollectionViewSectionHeader.swift in Sources */,
 				1A4B2F331B56C513007F67CC /* CollectionViewController.swift in Sources */,
+				094F9A551B8F2C5300AA411B /* CollectionViewSeparator.swift in Sources */,
 				1A4B2F311B56C513007F67CC /* AppDelegate.swift in Sources */,
 				1A3BEB171B56C8E2009644C9 /* CollectionViewCell.swift in Sources */,
 				1A3BEB191B56CBE9009644C9 /* CollectionParallaxHeader.swift in Sources */,

@@ -11,6 +11,7 @@
 
 
 NSString *const CSStickyHeaderParallaxHeader = @"CSStickyHeaderParallexHeader";
+NSString *const CSSeparator = @"CSSeparator";
 static const NSInteger kHeaderZIndex = 1024;
 
 @interface CSStickyHeaderFlowLayout (Debug)
@@ -95,7 +96,7 @@ static const NSInteger kHeaderZIndex = 1024;
             // Not implemeneted
         } else {
             UICollectionViewLayoutAttributes *currentAttribute = [lastCells objectForKey:@(indexPath.section)];
-
+            
             // Get the bottom most cell of that section
             if ( ! currentAttribute || indexPath.row > currentAttribute.indexPath.row) {
                 [lastCells setObject:obj forKey:@(indexPath.section)];
@@ -113,6 +114,20 @@ static const NSInteger kHeaderZIndex = 1024;
             attributes.zIndex = 1;
         }
     }];
+    
+    /* Separators */
+    
+    NSMutableArray *decorationAttributes = [NSMutableArray array];
+    NSArray * visibleIndexPaths = [self indexPathsOfSeparatorsInRect:adjustedRect];
+    
+    for (NSIndexPath *indexPath in visibleIndexPaths){
+        UICollectionViewLayoutAttributes * attributes = [self layoutAttributesForDecorationViewOfKind:CSSeparator atIndexPath:indexPath];
+        [decorationAttributes addObject:attributes];
+    }
+    
+    [allItems addObjectsFromArray:decorationAttributes];
+    
+    /* End of Separators */
 
     // when the visible rect is at top of the screen, make sure we see
     // the parallex header
@@ -160,7 +175,7 @@ static const NSInteger kHeaderZIndex = 1024;
     }
 
     // For debugging purpose
-//     [self debugLayoutAttributes:allItems];
+     //[self debugLayoutAttributes:allItems];
 
     return allItems;
 }
@@ -267,6 +282,34 @@ static const NSInteger kHeaderZIndex = 1024;
         height,
     };
     
+}
+
+- (NSArray*)indexPathsOfSeparatorsInRect:(CGRect)rect {
+    NSInteger firstCellIndexToShow = floorf(rect.origin.y / self.itemSize.height);
+    NSInteger lastCellIndexToShow = floorf((rect.origin.y + CGRectGetHeight(rect)) / self.itemSize.height);
+    NSInteger countOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
+    
+    NSMutableArray* indexPaths = [NSMutableArray new];
+    for (int i = MAX(firstCellIndexToShow, 0); i <= lastCellIndexToShow; i++) {
+        if (i < countOfItems) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+    }
+    return indexPaths;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
+    CGFloat decorationOffset = (indexPath.row + 3) * self.itemSize.height + (indexPath.row + 3) * self.minimumLineSpacing;
+    layoutAttributes.frame = CGRectMake(0.0, decorationOffset, self.collectionViewContentSize.width, self.minimumLineSpacing);
+    layoutAttributes.zIndex = 1000;
+    
+    return layoutAttributes;
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)decorationIndexPath {
+    UICollectionViewLayoutAttributes *layoutAttributes =  [self layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:decorationIndexPath];
+    return layoutAttributes;
 }
 
 @end
